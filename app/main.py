@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from recommender import generate_recommendation
+from app.recommender import generate_recommendation
 
 # ── App setup ─────────────────────────────────────────────
 app = FastAPI(
