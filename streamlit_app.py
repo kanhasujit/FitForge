@@ -84,7 +84,7 @@ if st.button("🚀 Generate My Workout Plan", use_container_width=True):
 
         try:
             response = requests.post(
-                "http://127.0.0.1:8000/recommend",
+                "https://fitforge-3.onrender.com/recommend",
                 json=payload
             )
             data = response.json()
