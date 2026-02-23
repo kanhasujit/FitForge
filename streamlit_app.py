@@ -155,60 +155,122 @@ if st.button("🚀 Generate My Workout Plan", use_container_width=True):
                 def generate_pdf(name, data, bmi, goal, frequency):
                     pdf = FPDF()
                     pdf.add_page()
+                    pdf.set_margins(15, 10, 15)
+                    pdf.set_auto_page_break(auto=False)
 
-                    # Header
+                    # ── Header ────────────────────────────────────────────
                     pdf.set_font("Helvetica", "B", 24)
                     pdf.cell(0, 15, "FitForge Workout Plan", ln=True, align="C")
                     pdf.set_font("Helvetica", "", 12)
                     pdf.cell(0, 8, f"Generated on {date.today().strftime('%B %d, %Y')}", ln=True, align="C")
                     pdf.ln(5)
 
-                    # User info
+                    # ── User Profile ──────────────────────────────────────
                     pdf.set_font("Helvetica", "B", 14)
                     pdf.cell(0, 10, "Your Profile", ln=True)
-                    pdf.set_font("Helvetica", "", 12)
-                    pdf.cell(0, 8, f"Name           : {name}", ln=True)
-                    pdf.cell(0, 8, f"Goal           : {goal}", ln=True)
-                    pdf.cell(0, 8, f"BMI            : {bmi}", ln=True)
-                    pdf.cell(0, 8, f"Workout Days   : {frequency} days/week", ln=True)
-                    pdf.cell(0, 8, f"Location       : {data['location']}", ln=True)
+                    pdf.set_font("Helvetica", "", 11)
+                    pdf.cell(0, 6, f"Name           : {name}", ln=True)
+                    pdf.cell(0, 6, f"Goal           : {goal}", ln=True)
+                    pdf.cell(0, 6, f"BMI            : {bmi}", ln=True)
+                    pdf.cell(0, 6, f"Workout Days   : {frequency} days/week", ln=True)
+                    pdf.cell(0, 6, f"Location       : {data['location']}", ln=True)
                     pdf.ln(5)
 
-                    # Plan summary
+                    # ── Plan Summary ──────────────────────────────────────
                     pdf.set_font("Helvetica", "B", 14)
                     pdf.cell(0, 10, "Your Plan", ln=True)
-                    pdf.set_font("Helvetica", "", 12)
-                    pdf.cell(0, 8, f"Workout Type   : {data['workout_type']}", ln=True)
-                    pdf.cell(0, 8, f"Difficulty     : {data['difficulty']}", ln=True)
-                    pdf.cell(0, 8, f"Calories/Session: {int(data['calories'])} kcal", ln=True)
+                    pdf.set_font("Helvetica", "", 11)
+                    pdf.cell(0, 6, f"Workout Type    : {data['workout_type']}", ln=True)
+                    pdf.cell(0, 6, f"Difficulty      : {data['difficulty']}", ln=True)
+                    pdf.cell(0, 6, f"Calories/Session: {int(data['calories'])} kcal", ln=True)
                     pdf.ln(5)
 
-                    # Exercises
+                    # ── Exercises ─────────────────────────────────────────
                     pdf.set_font("Helvetica", "B", 14)
                     pdf.cell(0, 10, "Your Exercises", ln=True)
-                    pdf.set_font("Helvetica", "", 12)
+                    pdf.set_font("Helvetica", "", 11)
                     for i, ex in enumerate(data['exercises'], 1):
-                        pdf.cell(0, 8, f"{i}. {ex['Title']} ({ex['BodyPart']}) - {ex['Level']}", ln=True)
+                        pdf.cell(0, 6, f"{i}. {ex['Title']} ({ex['BodyPart']}) - {ex['Level']}", ln=True)
                     pdf.ln(5)
 
-                    # Weekly schedule
+                    # ── Weekly Schedule ───────────────────────────────────
                     pdf.set_font("Helvetica", "B", 14)
                     pdf.cell(0, 10, "Weekly Schedule", ln=True)
-                    pdf.set_font("Helvetica", "", 12)
+                    pdf.set_font("Helvetica", "", 11)
                     days_all = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
                     for i, day in enumerate(days_all):
                         if i < frequency:
-                            pdf.cell(0, 8, f"{day}: {data['workout_type']} Workout", ln=True)
+                            pdf.cell(0, 6, f"{day}: {data['workout_type']} Workout", ln=True)
                         else:
-                            pdf.cell(0, 8, f"{day}: Rest Day", ln=True)
+                            pdf.cell(0, 6, f"{day}: Rest Day", ln=True)
 
-                    pdf.ln(10)
-                    pdf.set_font("Helvetica", "I", 10)
+                    # ── Footer always at bottom of page 1 ────────────────
+                    pdf.set_y(-15)
+                    pdf.set_font("Helvetica", "I", 9)
                     pdf.cell(0, 8, "Generated by FitForge - Stay consistent, stay strong!", ln=True, align="C")
-                    # Save to temp file
+
+                    # ── Save ──────────────────────────────────────────────
                     tmp = tempfile.NamedTemporaryFile(delete=False, suffix=".pdf")
                     pdf.output(tmp.name)
                     return tmp.name
+
+                # def generate_pdf(name, data, bmi, goal, frequency):
+                #     pdf = FPDF()
+                #     pdf.add_page()
+
+                #     # Header
+                #     pdf.set_font("Helvetica", "B", 24)
+                #     pdf.cell(0, 15, "FitForge Workout Plan", ln=True, align="C")
+                #     pdf.set_font("Helvetica", "", 12)
+                #     pdf.cell(0, 8, f"Generated on {date.today().strftime('%B %d, %Y')}", ln=True, align="C")
+                #     pdf.ln(5)
+
+                #     # User info
+                #     pdf.set_font("Helvetica", "B", 14)
+                #     pdf.cell(0, 10, "Your Profile", ln=True)
+                #     pdf.set_font("Helvetica", "", 12)
+                #     pdf.cell(0, 8, f"Name           : {name}", ln=True)
+                #     pdf.cell(0, 8, f"Goal           : {goal}", ln=True)
+                #     pdf.cell(0, 8, f"BMI            : {bmi}", ln=True)
+                #     pdf.cell(0, 8, f"Workout Days   : {frequency} days/week", ln=True)
+                #     pdf.cell(0, 8, f"Location       : {data['location']}", ln=True)
+                #     pdf.ln(5)
+
+                #     # Plan summary
+                #     pdf.set_font("Helvetica", "B", 14)
+                #     pdf.cell(0, 10, "Your Plan", ln=True)
+                #     pdf.set_font("Helvetica", "", 12)
+                #     pdf.cell(0, 8, f"Workout Type   : {data['workout_type']}", ln=True)
+                #     pdf.cell(0, 8, f"Difficulty     : {data['difficulty']}", ln=True)
+                #     pdf.cell(0, 8, f"Calories/Session: {int(data['calories'])} kcal", ln=True)
+                #     pdf.ln(5)
+
+                #     # Exercises
+                #     pdf.set_font("Helvetica", "B", 14)
+                #     pdf.cell(0, 10, "Your Exercises", ln=True)
+                #     pdf.set_font("Helvetica", "", 12)
+                #     for i, ex in enumerate(data['exercises'], 1):
+                #         pdf.cell(0, 8, f"{i}. {ex['Title']} ({ex['BodyPart']}) - {ex['Level']}", ln=True)
+                #     pdf.ln(5)
+
+                #     # Weekly schedule
+                #     pdf.set_font("Helvetica", "B", 14)
+                #     pdf.cell(0, 10, "Weekly Schedule", ln=True)
+                #     pdf.set_font("Helvetica", "", 12)
+                #     days_all = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+                #     for i, day in enumerate(days_all):
+                #         if i < frequency:
+                #             pdf.cell(0, 8, f"{day}: {data['workout_type']} Workout", ln=True)
+                #         else:
+                #             pdf.cell(0, 8, f"{day}: Rest Day", ln=True)
+
+                #     pdf.set_y(-25)
+                #     pdf.set_font("Helvetica", "I", 10)
+                #     pdf.cell(0, 8, "Generated by FitForge - Stay consistent, stay strong!", ln=True, align="C")
+                #     # Save to temp file
+                #     tmp = tempfile.NamedTemporaryFile(delete=False, suffix=".pdf")
+                #     pdf.output(tmp.name)
+                #     return tmp.name
 
                 pdf_path = generate_pdf(name, data, bmi, goal, frequency)
 
