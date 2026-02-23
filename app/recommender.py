@@ -1,12 +1,28 @@
 import pickle
 import pandas as pd
+import os
 
-# ── Load models ──────────────────────────────────────────
-with open('../models/calorie_model.pkl', 'rb') as f:
+# ── Get the base directory dynamically ───────────────────
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# ── Load models ───────────────────────────────────────────
+with open(os.path.join(BASE_DIR, 'models', 'calorie_model.pkl'), 'rb') as f:
     calorie_model = pickle.load(f)
 
-with open('../models/le_gender.pkl', 'rb') as f:
+with open(os.path.join(BASE_DIR, 'models', 'le_gender.pkl'), 'rb') as f:
     le_gender = pickle.load(f)
+
+# ── Load exercise data ────────────────────────────────────
+exercise_df = pd.read_csv(os.path.join(BASE_DIR, 'data', 'exercise_clean.csv'))
+# import pickle
+# import pandas as pd
+
+# # ── Load models ──────────────────────────────────────────
+# with open('../models/calorie_model.pkl', 'rb') as f:
+#     calorie_model = pickle.load(f)
+
+# with open('../models/le_gender.pkl', 'rb') as f:
+#     le_gender = pickle.load(f)
 
 # ── Load exercise data ────────────────────────────────────
 exercise_df = pd.read_csv('../data/exercise_clean.csv')
