@@ -25,7 +25,7 @@ exercise_df = pd.read_csv(os.path.join(BASE_DIR, 'data', 'exercise_clean.csv'))
 #     le_gender = pickle.load(f)
 
 # ── Load exercise data ────────────────────────────────────
-exercise_df = pd.read_csv('../data/exercise_clean.csv')
+# exercise_df = pd.read_csv('../data/exercise_clean.csv')
 
 # ── Mappings ──────────────────────────────────────────────
 workout_type_map = {
@@ -39,8 +39,8 @@ location_equipment_map = {
     'Home (No Equipment)'   : ['Body Only'],
     'Home (Basic Equipment)': ['Body Only', 'Dumbbell', 'Bands', 'Kettlebells'],
     'Gym'                   : ['Body Only', 'Dumbbell', 'Barbell', 'Cable',
-                               'Machine', 'Kettlebells', 'Medicine Ball',
-                               'Exercise Ball', 'Other']
+                            'Machine', 'Kettlebells', 'Medicine Ball',
+                            'Exercise Ball', 'Other']
 }
 
 # ── Rule functions ────────────────────────────────────────
