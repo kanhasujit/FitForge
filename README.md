@@ -237,7 +237,7 @@ Generates a personalized workout recommendation.
 
 ## 👨‍💻 Author
 
-**Your Name**
+**Sujit Kumar Behera**
 📧 bsujit2003@gmail.com
 🐙 [GitHub](https://github.com/kanhasujit)
 
