@@ -148,7 +148,7 @@ Generate Weekly Plan → View on screen → Download as PDF
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/FitForge.git
+git clone https://github.com/kanhasujit/FitForge.git
 cd FitForge
 
 # Install dependencies
@@ -238,9 +238,8 @@ Generates a personalized workout recommendation.
 ## 👨‍💻 Author
 
 **Your Name**
-📧 your.email@gmail.com
-🔗 [LinkedIn](https://linkedin.com/in/yourprofile)
-🐙 [GitHub](https://github.com/yourusername)
+📧 bsujit2003@gmail.com
+🐙 [GitHub](https://github.com/kanhasujit)
 
 ---
 
