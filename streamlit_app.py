@@ -59,27 +59,41 @@ def add_bg_color():
     """, unsafe_allow_html=True)
 
 # ── Page config ───────────────────────────────────────────
-# st.set_page_config(
-#     page_title="FitForge 💪",
-#     page_icon="💪",
-#     layout="centered"
-# )
-from PIL import Image
-
-# Load your logo
 logo = Image.open("logo.png")
 
 st.set_page_config(
     page_title="FitForge",
-    page_icon=logo,      # ← your actual logo image!
+    page_icon=logo,
     layout="centered"
 )
 add_bg_color()
 # ── Header ────────────────────────────────────────────────
-st.title("🏋️ FitForge")
-st.subheader("AI-Powered Personalized Workout Plan Generator")
-st.markdown("Fill in your details below and get a workout plan made just for you!")
+st.markdown("""
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap');
+
+    .title-fire {
+        font-family: 'Orbitron', sans-serif !important;
+        font-size: 60px !important;
+        font-weight: 900 !important;
+        background: linear-gradient(90deg, #ff4e00, #ec9f05);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-align: center;
+        line-height: 1.2;
+        display: block;
+        width: 100%;
+    }
+    </style>
+
+    <p class="title-fire">🏋️ FitForge 🏋️</p>
+
+""", unsafe_allow_html=True)
+
+st.markdown("<p style='text-align:center; color:white; font-size:20px; font-weight:600;'>AI-Powered Personalized Workout Plan Generator</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align:center; color:gray; font-size:15px;'>Fill in your details below and get a workout plan made just for you!</p>", unsafe_allow_html=True)
 st.divider()
+
 
 # ── User Input Form ───────────────────────────────────────
 st.header("👤 Your Profile")
@@ -95,23 +109,23 @@ with col1:
 
 with col2:
     goal     = st.selectbox("Your Goal", [
-                   "Weight Loss",
-                   "Muscle Gain",
-                   "Flexibility",
-                   "Endurance"
-               ])
+                "Weight Loss",
+                "Muscle Gain",
+                "Flexibility",
+                "Endurance"
+            ])
     experience = st.selectbox("Experience Level", [
-                   "Beginner (just starting out)",
-                   "Intermediate (some experience)",
-                   "Expert (very experienced)"
-               ])
+                "Beginner (just starting out)",
+                "Intermediate (some experience)",
+                "Expert (very experienced)"
+            ])
     frequency  = st.slider("Workout Days Per Week", 1, 7, 3)
     duration   = st.slider("Session Duration (hours)", 0.5, 3.0, 1.0, step=0.5)
     location   = st.selectbox("Where Will You Workout?", [
-                   "Home (No Equipment)",
-                   "Home (Basic Equipment)",
-                   "Gym"
-               ])
+                "Home (No Equipment)",
+                "Home (Basic Equipment)",
+                "Gym"
+            ])
 
 # ── Calculate BMI ─────────────────────────────────────────
 bmi = round(weight / (height ** 2), 1)

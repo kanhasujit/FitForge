@@ -1,13 +1,8 @@
-# from fastapi import FastAPI
-# from pydantic import BaseModel
-# from app.recommender import generate_recommendation
-
 from fastapi import FastAPI
 from pydantic import BaseModel
 import sys
 import os
 
-# Fix import path
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from recommender import generate_recommendation
