@@ -9,7 +9,7 @@
 > A full-stack ML app that generates personalized workout plans.
 
 ## 🌟 Live Demo
-🔗 **App:** [your streamlit link]
+🔗 **App:** [https://fitforge-fitness.streamlit.app/]
 🔗 **API:** [https://fitforge-3.onrender.com/docs]
 
 ## 📸 Screenshots
