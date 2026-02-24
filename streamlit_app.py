@@ -5,13 +5,65 @@ import tempfile
 import os
 from datetime import date
 
+def add_bg_color():
+    st.markdown("""
+        <style>
+        .stApp {
+            background-image: url("https://images.unsplash.com/photo-1623874514711-0f321325f318?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        /* Dark overlay so text is readable */
+        .stApp::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.65);
+            z-index: 0;
+        }
+
+        /* Make text white */
+        h1, h2, h3, p, label, .stMarkdown {
+            color: white !important;
+        }
+
+        /* Style input boxes */
+        .stTextInput input, .stNumberInput input {
+            background-color: rgba(255,255,255,0.1) !important;
+            color: white !important;
+            border-radius: 8px !important;
+        }
+
+        /* Style button */
+        .stButton button {
+            background: linear-gradient(90deg, #e94560, #0f3460) !important;
+            color: white !important;
+            border: none !important;
+            border-radius: 10px !important;
+            font-size: 16px !important;
+            font-weight: bold !important;
+        }
+
+        /* Style metrics */
+        .stMetric {
+            background-color: rgba(255,255,255,0.15) !important;
+            border-radius: 10px !important;
+            padding: 10px !important;
+        }
+        </style>
+    """, unsafe_allow_html=True)
+
 # ── Page config ───────────────────────────────────────────
 st.set_page_config(
     page_title="FitForge 💪",
     page_icon="💪",
     layout="centered"
 )
-
+add_bg_color()
 # ── Header ────────────────────────────────────────────────
 st.title("💪 FitForge")
 st.subheader("AI-Powered Personalized Workout Plan Generator")
